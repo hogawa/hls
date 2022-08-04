@@ -5,11 +5,11 @@
 #ifdef COMBA256X256
  void comba256x256(uint64_t *out, uint64_t *a, uint64_t *b);
  #define comba_mul comba256x256
- #include "comba256x256_test_vectors.c"
+ #include "comba256x256_test_vectors_sample.c"
 #elif defined(COMBA320X320)
  void comba320x320(uint64_t *out, uint64_t *a, uint64_t *b);
  #define comba_mul comba320x320
- #include "comba320x320_test_vectors.c"
+ #include "comba320x320_test_vectors_sample.c"
 #endif
 
 int main() {

@@ -77,6 +77,9 @@ if __name__ == "__main__":
     vlist_out = sys.argv[5].split(",")
 
     if mode == "standalone":
+        print("/**")
+        print(" * Auto-generated with comba_c_gen.py")
+        print(" */")
         print("#include <stdint.h>")
         print("")
         print("#define CMB_MULL(X,Y) (__uint128_t)(X * Y)")
