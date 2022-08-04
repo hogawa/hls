@@ -68,9 +68,9 @@ if __name__ == "__main__":
     if mode == "standalone":
         print("#include <stdint.h>")
         print("")
-        print("#define CMB_MULL(X,Y) (X * Y)")
-        print("#define CMB_MULH(X,Y) (((__uint128_t)X * Y) >> 64)")
-        print("#define CMB_L64(X)    ((uint64_t)X)")
+        print("#define CMB_MULL(X,Y) (__uint128_t)(X * Y)")
+        print("#define CMB_MULH(X,Y) (((__uint128_t)X * (__uint128_t)Y) >> 64)")
+        print("#define CMB_L64(X)    (X & 0xFFFFFFFFFFFFFFFF)")
         print("#define CMB_H64(X)    (X >> 64)")
         print("")
         print("void " + func_name + "(uint64_t *out, uint64_t *a, uint64_t *b) {")
