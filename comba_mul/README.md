@@ -1,6 +1,6 @@
 # Comba multiplication algorithm
 
-## Principles:
+## General ideas:
 
 - Delay carry computations (carry delay)
 - Requires 2N-bit accumulators when implementing with N-bit words
@@ -43,4 +43,11 @@ c, out[4] <- H(acc3) + L(acc4) + c
 c, out[5] <- H(acc4) + L(acc5) + c
 c, out[6] <- H(acc5) + L(acc6) + c
 out[7]    <- H(acc6) + acc7 + c
+```
+
+## Usage:
+
+To generate the 256x256->512-bit multiplier. The list of input and output variables must be passed as a string separated by commas and without spaces:
+```
+$ python3 comba_c_gen.py standalone comba256x256 a[0],a[1],a[2],a[3] b[0],b[1],b[2],b[3] out[0],out[1],out[2],out[3],out[4],out[5],out[6],out[7]
 ```

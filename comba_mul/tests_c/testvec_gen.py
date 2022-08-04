@@ -1,10 +1,17 @@
+import math
 import random
+import sys
 
 
-def bigint_u64_vec(x):
+def bigint_u64_vec(x: int) -> str:
+    """Generates a string of a C-like array representation with 64-bit elements from a big integer
+
+    :param x: the big integer input
+    :return: the C-like array print
+    """
     str_ret = ""
-    n_bits = len(hex(x)) * 4
-    n_limbs = int(n_bits / 64)
+    n_bits = x.bit_length()
+    n_limbs = int(math.ceil(n_bits / 64))
     str_ret += ("{ ")
     for i in range(n_limbs):
         y = x & 0xFFFFFFFFFFFFFFFF
@@ -16,7 +23,11 @@ def bigint_u64_vec(x):
     return str_ret
 
 
-def gen_testvec_u64(n_bits):
+def gen_testvec_u64(n_bits: int):
+    """ Generates a ternary corresponding to a test case: 1st multiplicand, 2nd multiplicand, output
+
+    :param b_bits: number of bits from the multiplicands
+    """
     a = random.randint(0, (1 << n_bits) - 1)
     b = random.randint(0, (1 << n_bits) - 1)
     exp = a * b
@@ -24,8 +35,8 @@ def gen_testvec_u64(n_bits):
 
 
 if __name__ == "__main__":
-    n_tests = 10
-    n_bits = 256
+    n_tests = int(sys.argv[1])
+    n_bits = int(sys.argv[2])
 
     a_buf, b_buf, exp_buf = [], [], []
     for i in range(n_tests):

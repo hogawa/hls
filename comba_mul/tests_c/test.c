@@ -19,5 +19,8 @@ int main() {
             assert(out[j] == expc[i][j]);
         }
     }
+
+    printf("[PASS] passing all %d testvectors\n", n_rows);
+
     return 0;
 }

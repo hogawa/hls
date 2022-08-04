@@ -1,7 +1,15 @@
 from typing import List
+import sys
 
 
-def comba_c_gen(varlist_a: List, varlist_b: List, varlist_out: List):
+def comba_c_gen(varlist_a: List, varlist_b: List, varlist_out: List) -> str:
+    """Prints a C code of multi-precision multiplication using 64-bit words
+
+    :param varlist_a: list of variables representing the first multiplicand (from least to most significant)
+    :param varlist_b: list of variables representing the second multiplicand (from least to most significant)
+    :param varlist_out: list of variables representing the output (from least to most significant)
+    :return: C code snippet of the Comba multiplication process
+    """
     # For now, we are considering inputs with same number of limbs
     assert(len(varlist_a) == len(varlist_b))
     assert(len(varlist_out) == 2 * len(varlist_a))
@@ -59,11 +67,14 @@ def comba_c_gen(varlist_a: List, varlist_b: List, varlist_out: List):
 
 
 if __name__ == "__main__":
-    mode = "standalone"
-    func_name = "comba256x256"
-    vlist_a = ["a[0]", "a[1]", "a[2]", "a[3]"]
-    vlist_b = ["b[0]", "b[1]", "b[2]", "b[3]"]
-    vlist_out = ["out[0]", "out[1]", "out[2]", "out[3]", "out[4]", "out[5]", "out[6]", "out[7]"]
+    """
+    TODO: improve argument passing - maybe use argparse?
+    """
+    mode = sys.argv[1]
+    func_name = sys.argv[2]
+    vlist_a = sys.argv[3].split(",")
+    vlist_b = sys.argv[4].split(",")
+    vlist_out = sys.argv[5].split(",")
 
     if mode == "standalone":
         print("#include <stdint.h>")
