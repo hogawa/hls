@@ -45,6 +45,10 @@ if __name__ == "__main__":
         b_buf.append(bigint_u64_vec(b_val))
         exp_buf.append(bigint_u64_vec(exp_val))
     
+    print("/**")
+    print(" * Auto-generated with testvec_gen.py")
+    print(" */")
+
     print("uint64_t a[" + str(n_tests) + "][" + str(int(n_bits / 64)) + "] = {")
     for i in range(n_tests):
         print("\t" + a_buf[i], end='')
